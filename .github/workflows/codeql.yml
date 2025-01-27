@@ -134,8 +134,8 @@ jobs:
         # if path is advanced-security-c then use the manual build
         if: ${{ matrix.project.path == 'advanced-security-c' }}
         run: |
-        # Add your manual build commands here
-        make clean && make
+          # Add your manual build commands here
+          make clean && make
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
