@@ -117,7 +117,7 @@ jobs:
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: ${{ join(matrix.project.languages, ',') }}
           config: |
@@ -127,8 +127,8 @@ jobs:
       # Autobuild attempts to build any compiled languages (C/C++, C#, or Java).
       - name: Autobuild
         # if path is not advanced-security-c then use the autobuild
-        if: ${{ matrix.project.path == 'advanced-security-c' }}
-        uses: github/codeql-action/autobuild@v2
+        if: ${{ matrix.project.path != 'advanced-security-c' }}
+        uses: github/codeql-action/autobuild@v3
 
       - name: Manual Build
         # if path is advanced-security-c then use the manual build
@@ -138,6 +138,6 @@ jobs:
         # Example: make clean && make
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{ matrix.project.languages[0] }}"
