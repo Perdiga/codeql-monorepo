@@ -14,4 +14,4 @@ namespace LowQualityAnalysisExample
             return new string(secret.Reverse().ToArray());
         }
     }
-} 
+}  
