@@ -58,7 +58,7 @@ jobs:
                 'advanced-security-python'
               ],
               csharp: [
-                'advanced-security-csharp'
+                'advanced-security-csharp',
                 'advanced-security-csharp-low'
               ],
               java: [
