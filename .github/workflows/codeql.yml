@@ -98,7 +98,7 @@ jobs:
 
   analyze:
     name: Analyze
-    needs: changes # <== REQUIRED
+    needs: changes 
     if: ${{ fromJson(needs.changes.outputs.projects).length > 0 }}
     runs-on: ${{ (matrix.project.languages[0] == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
     timeout-minutes: ${{ (matrix.project.languages[0] == 'swift' && 120) || 360 }}
@@ -127,18 +127,20 @@ jobs:
             paths:
               - '${{ matrix.project.path }}'
 
-      # Autobuild attempts to build any compiled languages (C/C++, C#, or Java).
-      - name: Autobuild
+      # Autobuild attempts to build any compiled languages.
+      - name: Buildmode Autobuild
         # if path is not advanced-security-c then use the autobuild
-        if: ${{ matrix.project.path != 'advanced-security-c' }}
+        if: ${{ matrix.project.path != 'advanced-security-c' }} && ${{ matrix.project.path != 'advanced-security-csharp-low }}
         uses: github/codeql-action/autobuild@v3
 
-      - name: Manual Build
+      - name: Buildmode Manual
         # if path is advanced-security-c then use the manual build
-        if: ${{ matrix.project.path == 'advanced-security-c' }}
+        if: ${{ matrix.project.path == 'advanced-security-c' }} && ${{ matrix.project.path != 'advanced-security-csharp-low }}
         run: |
           # Add your manual build commands here
           cd ${{ matrix.project.path }} && make
+
+      # advanced-security-csharp-low will use the none buildmode
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
