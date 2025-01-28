@@ -28,6 +28,8 @@ jobs:
               - 'advanced-security-cpp/**'  
             advanced-security-csharp:
               - 'advanced-security-csharp/**'
+            advanced-security-csharp-low:
+              - 'advanced-security-csharp-low/**'
             advanced-security-go:
               - 'advanced-security-go/**'
             advanced-security-python:
@@ -57,6 +59,7 @@ jobs:
               ],
               csharp: [
                 'advanced-security-csharp'
+                'advanced-security-csharp-low'
               ],
               java: [
                 'advanced-security-java'
